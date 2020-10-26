@@ -8,6 +8,4 @@ Pembelian Buah menggunakan **View Model** dan **Data Binding** sederhana
 
 ### Data yang diisi dan hasilnya
 
-![Data yang diisi](assert/isiData.png)
-
-![Hasilnya](assert/hasil.png)
+![Data yang diisi](assert/isiData.png)  ![Hasilnya](assert/hasil.png)
