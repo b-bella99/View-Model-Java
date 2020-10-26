@@ -1,19 +1,26 @@
 package com.example.pembelianbuah.fragments;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 
 import com.example.pembelianbuah.R;
 import com.example.pembelianbuah.databinding.FragmentTambahDataBinding;
 import com.example.pembelianbuah.viewmodels.BuahViewModels;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +29,7 @@ import com.example.pembelianbuah.viewmodels.BuahViewModels;
  */
 public class TambahData extends Fragment {
     BuahViewModels bvm;
+    DatePickerDialog date;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,13 +76,51 @@ public class TambahData extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         FragmentTambahDataBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tambah_data, container, false);
+
         bvm = new ViewModelProvider(this).get(BuahViewModels.class);
         binding.setBuah(bvm);
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(getActivity());
+
+        binding.edttglBuah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+                date = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int yearofyear, int monthofyear, int dayofmonth) {
+                                binding.edttglBuah.setText(dayofmonth + "/" + (monthofyear + 1) + "/" + yearofyear);
+                            }
+                        }, year, month, day);
+                date.show();
+            }
+        });
+
+        binding.btnSimpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bvm.addLog(binding.edttglBuah.getText().toString(), binding.edtNmBuah.getText().toString(), binding.edthrgBuah.getText().toString(), binding.edtjmlBuah.getText().toString(), binding.edtmrkBuah.getText().toString());
+                binding.setBuah(bvm);
+                binding.setLifecycleOwner(getActivity());
+                FragmentManager mFragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment,new HasilBuah()).commit();
+            }
+        });
+
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(TambahDataDirections.actionTambahDataToHasilBuah());
+            }
+        });
         return binding.getRoot();
     }
 
     public void onLogClicked(View view) {
-        //Navigation.findNavController(view).navigate(T.actionTambahDataBuahToLogDataBuah());
+        Navigation.findNavController(view).navigate(TambahDataDirections.actionTambahDataToHasilBuah());
     }
 }

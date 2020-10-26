@@ -8,6 +8,7 @@ import com.example.pembelianbuah.models.Buah;
 
 public class BuahViewModels extends ViewModel {
     public MutableLiveData<Buah> buahMutableLiveData = new MutableLiveData<>();
+    private final MutableLiveData mutableBuah = new MutableLiveData();
     public Buah buah = new Buah();
 
     public LiveData<Buah> getBuah(){
@@ -21,5 +22,10 @@ public class BuahViewModels extends ViewModel {
         buah.setJumlah(jml);
         buah.setMerk(merk);
         buahMutableLiveData.setValue(buah);
+        mutableBuah.setValue(buah);
+    }
+
+    public MutableLiveData getMutableBuah(){
+        return mutableBuah;
     }
 }

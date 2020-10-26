@@ -2,13 +2,19 @@ package com.example.pembelianbuah.fragments;
 
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pembelianbuah.R;
+import com.example.pembelianbuah.databinding.FragmentHasilBuahBinding;
+import com.example.pembelianbuah.models.Buah;
+import com.example.pembelianbuah.viewmodels.BuahViewModels;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +67,15 @@ public class HasilBuah extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hasil_buah, container, false);
+        FragmentHasilBuahBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_hasil_buah, container, false);
+        final BuahViewModels model = new ViewModelProvider(this).get(BuahViewModels.class);
+        model.getBuah().observe(getViewLifecycleOwner(), new Observer<Buah>() {
+            @Override
+            public void onChanged(Buah buah) {
+                binding.textView.setText(buah.getNama().toString());
+                binding.textView15.setText("cek");
+            }
+        });
+        return binding.getRoot();
     }
 }

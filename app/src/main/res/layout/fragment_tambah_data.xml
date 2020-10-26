@@ -226,7 +226,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number"
+                android:focusable="false"
+                android:inputType="date"
                 android:textColor="@color/black" />
         </LinearLayout>
 
@@ -236,7 +237,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="200dp"
             android:layout_marginBottom="96dp"
-            android:onClick="@{() -> buah.addLog(String.valueOf(edttglBuah.getText()),String.valueOf(edtNmBuah.getText()),String.valueOf(edthrgBuah.getText()),String.valueOf(edtjmlBuah.getText()),String.valueOf(edtmrkBuah.getText()))}"
             android:text="Simpan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -250,7 +250,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:onClick="@{(v) -> tmbh.onLogClicked(v)}"
             android:text="Lihat Log Pembelian Buah"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
