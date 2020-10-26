@@ -77,10 +77,6 @@ public class TambahData extends Fragment {
         // Inflate the layout for this fragment
         FragmentTambahDataBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tambah_data, container, false);
 
-        bvm = new ViewModelProvider(this).get(BuahViewModels.class);
-        binding.setBuah(bvm);
-        binding.setLifecycleOwner(getActivity());
-
         binding.edttglBuah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,28 +95,13 @@ public class TambahData extends Fragment {
             }
         });
 
-        binding.btnSimpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bvm.addLog(binding.edttglBuah.getText().toString(), binding.edtNmBuah.getText().toString(), binding.edthrgBuah.getText().toString(), binding.edtjmlBuah.getText().toString(), binding.edtmrkBuah.getText().toString());
-                binding.setBuah(bvm);
-                binding.setLifecycleOwner(getActivity());
-                FragmentManager mFragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment,new HasilBuah()).commit();
-            }
-        });
-
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(TambahDataDirections.actionTambahDataToHasilBuah());
-            }
-        });
+        bvm = new ViewModelProvider(this).get(BuahViewModels.class);
+        binding.setBuah(bvm);
+        binding.setLifecycleOwner(getActivity());
         return binding.getRoot();
     }
 
-    public void onLogClicked(View view) {
-        Navigation.findNavController(view).navigate(TambahDataDirections.actionTambahDataToHasilBuah());
-    }
+    //public void onLogClicked(View view) {
+    //    Navigation.findNavController(view).navigate(TambahDataDirections.actionTambahDataToHasilBuah());
+    //}
 }

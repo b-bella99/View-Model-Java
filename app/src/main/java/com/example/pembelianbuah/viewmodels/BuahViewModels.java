@@ -1,5 +1,7 @@
 package com.example.pembelianbuah.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -7,8 +9,8 @@ import androidx.lifecycle.ViewModel;
 import com.example.pembelianbuah.models.Buah;
 
 public class BuahViewModels extends ViewModel {
-    public MutableLiveData<Buah> buahMutableLiveData = new MutableLiveData<>();
-    private final MutableLiveData mutableBuah = new MutableLiveData();
+    private MutableLiveData<Buah> buahMutableLiveData = new MutableLiveData<>();
+    //private final MutableLiveData mutableBuah = new MutableLiveData();
     public Buah buah = new Buah();
 
     public LiveData<Buah> getBuah(){
@@ -22,10 +24,11 @@ public class BuahViewModels extends ViewModel {
         buah.setJumlah(jml);
         buah.setMerk(merk);
         buahMutableLiveData.setValue(buah);
-        mutableBuah.setValue(buah);
+        Log.d("Buah : ", String.valueOf(buah.getNama()));
+        //mutableBuah.setValue(buah);
     }
 
-    public MutableLiveData getMutableBuah(){
-        return mutableBuah;
-    }
+    //public MutableLiveData getMutableBuah(){
+      //  return mutableBuah;
+    //}
 }

@@ -7,9 +7,6 @@
         <variable
             name="buah"
             type="com.example.pembelianbuah.viewmodels.BuahViewModels" />
-        <variable
-            name="tmbh"
-            type="com.example.pembelianbuah.fragments.TambahData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -236,12 +233,13 @@
             android:layout_width="93dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="200dp"
-            android:layout_marginBottom="96dp"
+            android:layout_marginTop="24dp"
+            android:onClick="@{()->buah.addLog(edttglBuah.getText().toString,edtNmBuah.getText().toString(),edthrgBuah.getText().toString(),edtjmlBuah.getText().toString(),edtmrkBuah.getText().toString())}"
             android:text="Simpan"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.864"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
         <Button
             android:id="@+id/button"
@@ -254,5 +252,55 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:weightSum="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSimpan">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{String.valueOf(buah.getBuah().tanggal)}"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{String.valueOf(buah.getBuah().nama)}"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{String.valueOf(buah.getBuah().harga)}"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{String.valueOf(buah.getBuah().jumlah)}"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{String.valueOf(buah.getBuah().merk)}"
+                android:textColor="@color/black" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

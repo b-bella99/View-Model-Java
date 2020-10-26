@@ -9,14 +9,5 @@
         android:id="@+id/tambahData"
         android:name="com.example.pembelianbuah.fragments.TambahData"
         android:label="fragment_tambah_data"
-        tools:layout="@layout/fragment_tambah_data" >
-        <action
-            android:id="@+id/action_tambahData_to_hasilBuah"
-            app:destination="@id/hasilBuah" />
-    </fragment>
-    <fragment
-        android:id="@+id/hasilBuah"
-        android:name="com.example.pembelianbuah.fragments.HasilBuah"
-        android:label="fragment_hasil_buah"
-        tools:layout="@layout/fragment_hasil_buah" />
+        tools:layout="@layout/fragment_tambah_data" />
 </navigation>
